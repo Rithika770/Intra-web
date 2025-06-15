@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive Navigation Web Page</title>
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+/* Remove default browser margin and padding */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* Make sure fixed top-header is flush at top */
+.top-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 10px 0;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  z-index: 1100;
+  font-size: 16px;
+}
+
+/* No margin on main-title, but push it down by header height */
+.main-title {
+  margin: 0;
+  padding-top: 50px; /* height of top-header + a little */
+  text-align: center;
+  font-size: 48px;
+  font-weight: bold;
+  color: #f0a500;
+  font-family: 'Segoe UI', sans-serif;
+}
+s
+//* Container that sticks to the side */
+.floating-social {
+  position: fixed;
+  top: 120px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 9999;
+}
+
+/* Icons - smaller size */
+.social-icon {
+  width: 28px;
+  height: 28px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+/* Zoom on hover */
+.social-icon:hover {
+  transform: scale(1.2);
+}
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      background-color: #f4f4f4;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: transparent;
+      display: flex;
+      justify-content: center;
+      padding: 15px 0;
+      z-index: 1000;
+      transition: background-color 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .navbar.scrolled {
+      background-color: #1a1a1a;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 10px 15px;
+      border-radius: 6px;
+      transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    }
+
+    .nav-links a:hover {
+      background-color: #f0a500;
+      color: #000;
+      transform: scale(1.05);
+    }
+
+    /* Sections */
+    section {
+      padding: 100px 20px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 40px;
+    }
+
+    p {
+      max-width: 800px;
+      margin: 0 auto 30px;
+      text-align: center;
+      font-size: 18px;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 250px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    footer {
+      background-color: #1a1a1a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+footer {
+      background-color: #1e3c72;
+      color: white;
+      padding: 20px 0;
+      margin-top: 30px;
+    }
+.footer-social img {
+      width: 25px;
+      margin: 0 10px;
+      vertical-align: middle;
+    }
+
+  /* Section Colors */
+    #home { background-color: #e1f5fe; }
+    #about { background-color: #fff9c4; }
+    #services { background-color: #dcedc8; }
+    #contact { background-color: #f8bbd0; }
+ .top-header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1100;
+  font-size: 16px;
+}
+
+
+/* Shift navbar lower since header is on top */
+.navbar {
+  top: 40px;
+}
+.nav-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #f0a500;
+  text-transform: uppercase;
+}
+
+  </style>
+</head>
+<body>
+
+
+
+
+  <!-- Navigation -->
+  <header class="navbar" id="navbar">
+   <div class="nav-container">
+    <div class="logo">InteraWeb</div>
+ <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </header>
+
+  <!-- Sections -->
+  <section id="home">
+    <h1><u>Welcome to Our Website</u></h1>
+    <p>We create beautiful, interactive, and responsive web experiences tailored for users like you.</p>
+    <div class="cards">
+      <div class="card">
+        <img src="feature image.png">
+        <h3>Fast & Responsive</h3>
+        <p>Optimized for all devices, ensuring a smooth experience.</p>
+      </div>
+      <div class="card">
+        <img src="interactive design.jpg"
+        <h3>Interactive Design</h3>
+        <p>Engaging layouts with real-time interactions and feedback.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <h1><u>About Us</u></h1>
+    <p>We are a creative tech team passionate about design, development, and making ideas come to life.</p>
+    <div class="cards">
+      <div class="card">
+        <img src="mission.avif">
+        <h3>Our Mission</h3>
+        <p>To craft exceptional user-centric digital experiences.</p>
+      </div>
+      <div class="card">
+        <img src="vision.jpg">
+        <h3>Our Vision</h3>
+        <p>Innovation and creativity at the heart of every project.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <h1><u>Services</u></h1>
+    <p>We offer full-stack web development, UI/UX design, and consulting services.</p>
+    <div class="cards">
+      <div class="card">
+        <img src="wde.jpg">
+        <h3>Web Development</h3>
+        <p>Custom-built websites using modern technologies.</p>
+      </div>
+      <div class="card">
+        <img src="ui-ux-design.jpg">
+        <h3>UI/UX Design</h3>
+        <p>Clean, minimal interfaces with a user-first approach.</p>
+      </div>
+      <div class="card">
+        <img src="tech.jpg">
+        <h3>Tech Consulting</h3>
+        <p>Helping you plan, build, and grow your digital presence.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h1><u>Contact Us</u></h1>
+    <p>Have questions or want to work with us? Reach out anytime!</p>
+    <div class="cards">
+      <div class="card">
+        <h3>Email</h3>
+        <p>queryinteraweb@gmail.com</p>
+      </div>
+      <div class="card">
+        <h3>Phone</h3>
+        <p>+91 98765 43210</p>
+      </div>
+      <div class="card">
+        <h3>Location</h3>
+        <p>Chennai, Tamil Nadu, India</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+<div class="footer-social">
+<!-- SOCIAL ICONS ON NEXT LINE, CENTERED -->
+      <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"
+width="25"
+  style="transition: transform 0.3s ease;"
+  onmouseover="this.style.transform='scale(1.2)';"
+  onmouseout="this.style.transform='scale(1)';"
+/>
+     <img
+  src="https://cdn-icons-png.flaticon.com/512/733/733579.png"
+  alt="Twitter"
+  width="25"
+  style="transition: transform 0.15s ease;"
+  onclick="this.style.transform='scale(1.3)'; setTimeout(() => { this.style.transform='scale(1)'; }, 150);"
+/>
+      <img
+  src="https://cdn-icons-png.flaticon.com/512/733/733561.png"
+  alt="LinkedIn"
+  width="25"
+  title="Follow us on LinkedIn"
+/>
+    </div>
+    &copy; 2025 Interactive Web Studio. All rights reserved.
+  </footer>
+
+  <!-- Scroll Interaction Script -->
+  <script>
+    const navbar = document.getElementById("navbar");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+  </script>
+</body>
+</html>
